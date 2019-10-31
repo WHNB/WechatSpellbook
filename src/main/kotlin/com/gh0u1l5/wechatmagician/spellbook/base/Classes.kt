@@ -78,8 +78,27 @@ class Classes(private val classes: List<Class<*>>) {
     fun firstOrNull(): Class<*>? {
         if (classes.size > 1) {
             val names = classes.map { it.canonicalName }
-            Log.w("Xposed", "found a signature that matches more than one class: $names")
+            Log.w(TAG, "found a signature that matches more than one class: $names")
         }
         return classes.firstOrNull()
+    }
+
+    fun lastOrNull(): Class<*>? {
+        if (classes.size > 1) {
+            val names = classes.map { it.canonicalName }
+            Log.w(TAG, "[lastOrNull] found a signature that matches more than one class: $names")
+        }
+
+        return classes.lastOrNull()
+    }
+
+    fun dumpAll() {
+        if (classes.size > 0) {
+            val names = classes.map { it.name }
+            Log.w(TAG, "[dumpAll] class: $names")
+
+        } else {
+            Log.w(TAG, "[dumpAll] do not found a signature that matches any class")
+        }
     }
 }

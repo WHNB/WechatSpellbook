@@ -5,12 +5,18 @@ import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxClasses
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxLazy
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxLoader
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxPackageName
+import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxVersion
+import com.gh0u1l5.wechatmagician.spellbook.base.Version
 import com.gh0u1l5.wechatmagician.spellbook.util.ReflectionUtil.findClassIfExists
 import com.gh0u1l5.wechatmagician.spellbook.util.ReflectionUtil.findClassesFromPackage
 
 object Classes {
     val AddressUI: Class<*> by wxLazy("AddressUI") {
-        findClassIfExists("$wxPackageName.ui.contact.AddressUI\$a", wxLoader!!)
+        if (wxVersion!! < Version("7.0.7")) {
+            findClassIfExists("$wxPackageName.ui.contact.AddressUI\$a", wxLoader!!)
+        } else {
+            findClassIfExists("$wxPackageName.ui.contact.AddressUI\$AddressUIFragment", wxLoader!!)
+        }
     }
 
     val AddressAdapter: Class<*> by wxLazy("AddressAdapter") {

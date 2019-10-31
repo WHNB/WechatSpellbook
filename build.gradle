@@ -48,6 +48,7 @@ android {
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += "src/androidTest/kotlin"
     }
+    buildToolsVersion = '28.0.3'
     android.libraryVariants.all { variant ->
         variant.javaCompiler.dependsOn(generateMirrorClassesList)
         variant.javaCompiler.dependsOn(generateMirrorMethodsList)
@@ -120,4 +121,4 @@ task generateMirrorFieldsList() {
     generateMirrorList("Fields", "MirrorFields")
 }
 
-apply from: 'maven.gradle'
+// apply from: 'maven.gradle'

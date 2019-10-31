@@ -5,6 +5,8 @@ import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxClasses
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxLazy
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxLoader
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxPackageName
+import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxVersion
+import com.gh0u1l5.wechatmagician.spellbook.base.Version
 import com.gh0u1l5.wechatmagician.spellbook.util.ReflectionUtil.findClassesFromPackage
 
 object Classes {
@@ -16,9 +18,17 @@ object Classes {
     }
 
     val LruCache: Class<*> by wxLazy("LruCache") {
-        findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.sdk.platformtools")
+        if (wxVersion!! < Version("7.0.7")) {
+            findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.sdk.platformtools")
                 .filterByMethod(null, "trimToSize", C.Int)
                 .firstOrNull()
+
+        } else {
+            findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.memory", 3)
+                .filterByMethod(null, "trimToSize", C.Int)
+                .filterByMethod(null, "clear")
+                .firstOrNull()
+        }
     }
 
     val XmlParser: Class<*> by wxLazy("XmlParser") {
