@@ -4,8 +4,8 @@ import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal
 import com.gh0u1l5.wechatmagician.spellbook.base.Classes
 import com.gh0u1l5.wechatmagician.spellbook.parser.ApkFile
 import com.gh0u1l5.wechatmagician.spellbook.parser.ClassTrie
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedBridge.hookMethod
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedBridge.hookMethod
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 import java.util.concurrent.ConcurrentHashMap
@@ -176,5 +176,16 @@ object ReflectionUtil {
      */
     @JvmStatic fun hookAllMethodsInClass(clazz: Class<*>, callback: XC_MethodHook) {
         clazz.declaredMethods.forEach { method -> hookMethod(method, callback) }
+    }
+
+    @JvmStatic fun findFieldsWithType(clazz: Class<*>, typeName: String, fieldName: String, depth: Int = 0): Field? {
+        var that = clazz
+        for (i in 0 until depth) {
+            that = that.superclass
+        }
+
+        return findFieldsWithType(that, typeName).firstOrNull {
+            it.name == fieldName
+        }
     }
 }

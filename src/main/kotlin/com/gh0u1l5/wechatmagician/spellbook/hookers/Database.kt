@@ -9,8 +9,8 @@ import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.wcdb.Classes.SQLi
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.wcdb.database.Classes.SQLiteCursorFactory
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.wcdb.database.Classes.SQLiteDatabase
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.wcdb.support.Classes.SQLiteCancellationSignal
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedHelpers.findAndHookMethod
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedHelpers.findAndHookMethod
 
 object Database : EventCenter() {
 

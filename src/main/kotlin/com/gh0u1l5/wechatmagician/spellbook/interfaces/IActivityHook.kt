@@ -18,9 +18,9 @@ interface IActivityHook {
      * Called when an Activity is going to invoke [Activity.onCreate] method.
      *
      * @param activity the activity object that is creating.
-     * @param savedInstanceState the saved instance state for restoring the state.
+     * @param bundle the saved instance state for restoring the state.
      */
-    fun onActivityCreating(activity: Activity, savedInstanceState: Bundle?) { }
+    fun onActivityCreating(activity: Activity, bundle: Bundle?) { }
 
     /**
      * Called when an activity is going to invoke [Activity.onStart] method.

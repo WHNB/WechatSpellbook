@@ -9,10 +9,10 @@ import com.gh0u1l5.wechatmagician.spellbook.base.Hooker
 import com.gh0u1l5.wechatmagician.spellbook.interfaces.IAdapterHook
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.ui.contact.Classes.AddressAdapter
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.ui.conversation.Classes.ConversationWithCacheAdapter
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedBridge.hookAllConstructors
-import de.robv.android.xposed.XposedBridge.log
-import de.robv.android.xposed.XposedHelpers.findAndHookMethod
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedBridge.hookAllConstructors
+import com.android.system.xposed.XposedBridge.log
+import com.android.system.xposed.XposedHelpers.findAndHookMethod
 
 object Adapters : EventCenter() {
 

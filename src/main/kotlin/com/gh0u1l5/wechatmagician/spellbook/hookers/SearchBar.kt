@@ -10,8 +10,8 @@ import com.gh0u1l5.wechatmagician.spellbook.base.EventCenter
 import com.gh0u1l5.wechatmagician.spellbook.base.Hooker
 import com.gh0u1l5.wechatmagician.spellbook.interfaces.ISearchBarConsole
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.ui.tools.Classes.ActionBarEditText
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedBridge.hookAllConstructors
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedBridge.hookAllConstructors
 
 object SearchBar : EventCenter() {
 

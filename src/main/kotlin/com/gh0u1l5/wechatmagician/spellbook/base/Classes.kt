@@ -83,6 +83,22 @@ class Classes(private val classes: List<Class<*>>) {
         return classes.firstOrNull()
     }
 
+    fun filterByConstructor(vararg parameterTypes: Class<*>): Classes {
+        return Classes(classes.filter { clazz ->
+            for (constructor in clazz.constructors) {
+                if (parameterTypes.size == constructor.parameterTypes.size) {
+                    for (i in parameterTypes.indices) {
+                        if (parameterTypes[i] == constructor.parameterTypes[i]) {
+                            return@filter true
+                        }
+                    }
+                }
+            }
+
+            return@filter false
+        })
+    }
+
     fun lastOrNull(): Class<*>? {
         if (classes.size > 1) {
             val names = classes.map { it.canonicalName }
@@ -90,6 +106,10 @@ class Classes(private val classes: List<Class<*>>) {
         }
 
         return classes.lastOrNull()
+    }
+
+    fun all(): List<Class<*>> {
+        return classes
     }
 
     fun dumpAll() {
@@ -100,5 +120,17 @@ class Classes(private val classes: List<Class<*>>) {
         } else {
             Log.w(TAG, "[dumpAll] do not found a signature that matches any class")
         }
+    }
+
+    fun filterByFieldNotInclude(fieldName: String, fieldType: String): Classes {
+        return Classes(classes.filterNot { clazz ->
+            val field = findFieldIfExists(clazz, fieldName)
+            Log.w(TAG, "filterByFieldNotInclude clazz=$clazz field=$field")
+            field != null && field.type.canonicalName == fieldType
+        }.also {
+            if (it.isEmpty()) {
+                Log.w(TAG, "filterByFieldNotInclude found nothing, $fieldName $fieldType")
+            }
+        })
     }
 }

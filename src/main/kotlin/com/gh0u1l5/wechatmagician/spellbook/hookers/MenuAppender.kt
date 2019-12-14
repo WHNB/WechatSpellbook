@@ -15,8 +15,8 @@ import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.ui.contact.Cla
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.ui.contact.Classes.ContactLongClickListener
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.ui.conversation.Classes.ConversationCreateContextMenuListener
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.ui.conversation.Classes.ConversationLongClickListener
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedHelpers.*
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedHelpers.*
 
 object MenuAppender : EventCenter() {
 

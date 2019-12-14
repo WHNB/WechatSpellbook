@@ -8,10 +8,10 @@ import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.Classes.ImgInf
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.Methods.ImgInfoStorage_load
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.storage.Classes.MsgInfoStorage
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.storage.Methods.MsgInfoStorage_insert
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedBridge.hookAllConstructors
-import de.robv.android.xposed.XposedBridge.hookMethod
-import de.robv.android.xposed.XposedHelpers.getLongField
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedBridge.hookAllConstructors
+import com.android.system.xposed.XposedBridge.hookMethod
+import com.android.system.xposed.XposedHelpers.getLongField
 
 object Storage : EventCenter() {
 

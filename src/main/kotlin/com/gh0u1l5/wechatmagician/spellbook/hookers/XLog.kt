@@ -5,8 +5,8 @@ import com.gh0u1l5.wechatmagician.spellbook.base.Hooker
 import com.gh0u1l5.wechatmagician.spellbook.interfaces.IXLogHook
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mars.xlog.Constants.toHumanReadableLevel
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mars.xlog.Methods.Xlog_logWrite2
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedBridge.hookMethod
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedBridge.hookMethod
 
 object XLog : EventCenter() {
     override val interfaces: List<Class<*>>

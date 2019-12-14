@@ -7,8 +7,8 @@ import com.gh0u1l5.wechatmagician.spellbook.base.EventCenter
 import com.gh0u1l5.wechatmagician.spellbook.base.Hooker
 import com.gh0u1l5.wechatmagician.spellbook.interfaces.IUriRouterHook
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.plugin.base.stub.Methods.WXCustomScheme_entry
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedBridge.hookMethod
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedBridge.hookMethod
 
 object UriRouter : EventCenter() {
 

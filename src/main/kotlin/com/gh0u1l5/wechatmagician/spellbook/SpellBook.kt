@@ -7,10 +7,11 @@ import com.gh0u1l5.wechatmagician.spellbook.base.Version
 import com.gh0u1l5.wechatmagician.spellbook.hookers.*
 import com.gh0u1l5.wechatmagician.spellbook.util.ParallelUtil.parallelForEach
 import com.gh0u1l5.wechatmagician.spellbook.util.XposedUtil
-import de.robv.android.xposed.XposedBridge.log
-import de.robv.android.xposed.XposedHelpers.*
-import de.robv.android.xposed.callbacks.XC_LoadPackage
-import de.robv.android.xposed.IXposedHookLoadPackage
+import com.android.system.xposed.XposedBridge.log
+import com.android.system.xposed.XposedHelpers.*
+import com.android.system.xposed.callbacks.XC_LoadPackage
+import com.android.system.xposed.IXposedHookLoadPackage
+import com.gh0u1l5.wechatmagician.spellbook.util.BasicUtil.tryAsynchronously
 import java.io.File
 
 /**
@@ -144,6 +145,37 @@ object SpellBook {
             (provider as HookerProvider).provideStaticHookers()?.forEach { hooker ->
                 if (!hooker.hasHooked) {
                     XposedUtil.postHooker(hooker)
+                }
+            }
+        }
+    }
+
+    fun startup(
+        lpparam: XC_LoadPackage.LoadPackageParam,
+        centersExt: List<EventCenter>,
+        plugins: List<Any>?,
+        hookers: List<HookerProvider>?
+    ) {
+        WechatGlobal.init(lpparam)
+        registerPlugins(centersExt, plugins)
+        registerHookers(hookers)
+    }
+
+    private fun registerPlugins(centersExt: List<EventCenter>, plugins: List<Any>?) {
+        if (plugins == null) {
+            return
+        }
+
+        (centers + centersExt).forEach { center ->
+            tryAsynchronously {
+                center.interfaces.forEach { `interface` ->
+                    plugins.forEach { plugin ->
+                        val assignable = `interface`.isAssignableFrom(plugin::class.java)
+                        // log(TAG, "`interface`=${`interface`} assignable=$assignable")
+                        if (assignable) {
+                            center.register(`interface`, plugin)
+                        }
+                    }
                 }
             }
         }

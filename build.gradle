@@ -68,8 +68,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
     //noinspection GradleDependency
-    compileOnly 'de.robv.android.xposed:api:53'
-    compileOnly 'de.robv.android.xposed:api:53:sources'
+    compileOnly files("${xposedBridgePath}")
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 

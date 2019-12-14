@@ -4,9 +4,9 @@ import com.gh0u1l5.wechatmagician.spellbook.C
 import com.gh0u1l5.wechatmagician.spellbook.base.EventCenter
 import com.gh0u1l5.wechatmagician.spellbook.base.Hooker
 import com.gh0u1l5.wechatmagician.spellbook.interfaces.IFileSystemHook
-import de.robv.android.xposed.XC_MethodHook
-import de.robv.android.xposed.XposedHelpers.findAndHookConstructor
-import de.robv.android.xposed.XposedHelpers.findAndHookMethod
+import com.android.system.xposed.XC_MethodHook
+import com.android.system.xposed.XposedHelpers.findAndHookConstructor
+import com.android.system.xposed.XposedHelpers.findAndHookMethod
 import java.io.File
 
 object FileSystem : EventCenter() {

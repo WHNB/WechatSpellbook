@@ -3,7 +3,7 @@ package com.gh0u1l5.wechatmagician.spellbook.base
 import com.gh0u1l5.wechatmagician.spellbook.util.BasicUtil.tryVerbosely
 import com.gh0u1l5.wechatmagician.spellbook.util.ParallelUtil.parallelForEach
 import com.gh0u1l5.wechatmagician.spellbook.util.XposedUtil
-import de.robv.android.xposed.XC_MethodHook
+import com.android.system.xposed.XC_MethodHook
 import java.util.concurrent.ConcurrentHashMap
 
 /**
