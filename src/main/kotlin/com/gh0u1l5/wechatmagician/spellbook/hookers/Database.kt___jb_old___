@@ -19,11 +19,11 @@ object Database : EventCenter() {
 
     override fun provideEventHooker(event: String): Hooker? {
         return when (event) {
-            "onDatabaseOpening", "onDatabaseOpened"     -> onOpenHooker
-            "onDatabaseQuerying", "onDatabaseQueried"   -> onQueryHooker
+            "onDatabaseOpening", "onDatabaseOpened" -> onOpenHooker
+            "onDatabaseQuerying", "onDatabaseQueried" -> onQueryHooker
             "onDatabaseInserting", "onDatabaseInserted" -> onInsertHooker
-            "onDatabaseUpdating", "onDatabaseUpdated"   -> onUpdateHooker
-            "onDatabaseDeleting", "onDatabaseDeleted"   -> onDeleteHooker
+            "onDatabaseUpdating", "onDatabaseUpdated" -> onUpdateHooker
+            "onDatabaseDeleting", "onDatabaseDeleted" -> onDeleteHooker
             "onDatabaseExecuting", "onDatabaseExecuted" -> onExecuteHooker
             else -> throw IllegalArgumentException("Unknown event: $event")
         }

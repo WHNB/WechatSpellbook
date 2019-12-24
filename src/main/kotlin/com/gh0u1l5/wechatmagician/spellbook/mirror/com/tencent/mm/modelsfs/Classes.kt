@@ -11,7 +11,7 @@ import com.gh0u1l5.wechatmagician.spellbook.util.ReflectionUtil.findClassesFromP
 
 object Classes {
     val EncEngine: Class<*> by wxLazy("EncEngine") {
-        if (wxVersion!! < Version("7.0.7")) {
+        if (wxVersion!! < Version("7.0.9")) {
             findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.modelsfs")
                 .filterByMethod(null, "seek", C.Long)
                 .filterByMethod(null, "free")

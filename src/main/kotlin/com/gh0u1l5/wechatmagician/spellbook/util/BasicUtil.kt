@@ -19,7 +19,7 @@ object BasicUtil {
      */
     @JvmStatic inline fun <T: Any>tryVerbosely(func: () -> T?): T? {
         return try { func() } catch (t: Throwable) {
-            Log.e("Xposed", Log.getStackTraceString(t)); null
+            Log.e("EdXposed", Log.getStackTraceString(t)); null
         }
     }
 
@@ -31,7 +31,7 @@ object BasicUtil {
     @JvmStatic inline fun tryAsynchronously(crossinline func: () -> Unit): Thread {
         return thread(start = true) { func() }.apply {
             setUncaughtExceptionHandler { _, t ->
-                Log.e("Xposed", Log.getStackTraceString(t))
+                Log.e("EdXposed", Log.getStackTraceString(t))
             }
         }
     }

@@ -16,7 +16,7 @@ object Methods {
     }
 
     val LruCacheWithListener_put: Method by wxLazy("LruCacheWithListener_put") {
-        if (wxVersion!! < Version("7.0.7")) {
+        if (wxVersion!! < Version("7.0.9")) {
             findMethodsByExactParameters(LruCacheWithListener, null, C.Object, C.Object)
                 .firstOrNull()?.apply { isAccessible = true }
 

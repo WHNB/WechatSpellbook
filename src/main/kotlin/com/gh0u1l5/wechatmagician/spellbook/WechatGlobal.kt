@@ -2,14 +2,14 @@ package com.gh0u1l5.wechatmagician.spellbook
 
 import android.widget.Adapter
 import android.widget.BaseAdapter
+import com.android.system.xposed.IXposedHookLoadPackage
+import com.android.system.xposed.callbacks.XC_LoadPackage
 import com.gh0u1l5.wechatmagician.spellbook.SpellBook.getApplicationVersion
 import com.gh0u1l5.wechatmagician.spellbook.base.Version
 import com.gh0u1l5.wechatmagician.spellbook.base.WaitChannel
 import com.gh0u1l5.wechatmagician.spellbook.parser.ApkFile
 import com.gh0u1l5.wechatmagician.spellbook.parser.ClassTrie
 import com.gh0u1l5.wechatmagician.spellbook.util.BasicUtil.tryAsynchronously
-import com.android.system.xposed.IXposedHookLoadPackage
-import com.android.system.xposed.callbacks.XC_LoadPackage
 import java.lang.ref.WeakReference
 
 /**
@@ -21,7 +21,7 @@ object WechatGlobal {
      * 若初始化操作耗费2秒以上, 视作初始化失败, 直接让微信开始正常运行
      */
     @Suppress("MemberVisibilityCanBePrivate")
-    const val INIT_TIMEOUT = 2000L // ms
+    const val INIT_TIMEOUT = 5000L // ms
 
     /**
      * 用于防止其他线程在初始化完成之前访问 WechatGlobal的变量
@@ -112,7 +112,7 @@ object WechatGlobal {
                 initializer() ?: throw Error("Failed to evaluate $name")
             }
         } else {
-            lazy(LazyThreadSafetyMode.PUBLICATION) {
+            lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
                 when (null) {
                     wxVersion     -> throw Error("Invalid wxVersion")
                     wxPackageName -> throw Error("Invalid wxPackageName")

@@ -13,7 +13,7 @@ object Fields {
     val ImgInfoStorage_mBitmapCache: Field by wxLazy("ImgInfoStorage_mBitmapCache") {
         var genericTypeName =
             "${LruCacheWithListener.canonicalName}<java.lang.String, android.graphics.Bitmap>"
-        if (wxVersion!! >= Version("7.0.7")) {
+        if (wxVersion!! >= Version("7.0.9")) {
             genericTypeName =
                 "${LruCacheWithListenerType.canonicalName}<java.lang.String, android.graphics.Bitmap>"
         }

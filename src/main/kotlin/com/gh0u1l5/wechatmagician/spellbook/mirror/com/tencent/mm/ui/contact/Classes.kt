@@ -12,7 +12,7 @@ import com.gh0u1l5.wechatmagician.spellbook.util.ReflectionUtil.findClassesFromP
 
 object Classes {
     val AddressUI: Class<*> by wxLazy("AddressUI") {
-        if (wxVersion!! < Version("7.0.7")) {
+        if (wxVersion!! < Version("7.0.9")) {
             findClassIfExists("$wxPackageName.ui.contact.AddressUI\$a", wxLoader!!)
         } else {
             findClassIfExists("$wxPackageName.ui.contact.AddressUI\$AddressUIFragment", wxLoader!!)
