@@ -21,7 +21,7 @@ object WechatGlobal {
      * 若初始化操作耗费2秒以上, 视作初始化失败, 直接让微信开始正常运行
      */
     @Suppress("MemberVisibilityCanBePrivate")
-    const val INIT_TIMEOUT = 5000L // ms
+    const val INIT_TIMEOUT = 2000L // ms
 
     /**
      * 用于防止其他线程在初始化完成之前访问 WechatGlobal的变量
@@ -112,7 +112,7 @@ object WechatGlobal {
                 initializer() ?: throw Error("Failed to evaluate $name")
             }
         } else {
-            lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+            lazy(LazyThreadSafetyMode.PUBLICATION) {
                 when (null) {
                     wxVersion     -> throw Error("Invalid wxVersion")
                     wxPackageName -> throw Error("Invalid wxPackageName")

@@ -24,8 +24,8 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode hookVersionCode
+        versionName hookVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
