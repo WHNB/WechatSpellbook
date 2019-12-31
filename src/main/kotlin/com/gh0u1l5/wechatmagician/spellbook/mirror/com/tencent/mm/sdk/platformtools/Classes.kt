@@ -18,9 +18,10 @@ object Classes {
     }
 
     val LruCache: Class<*> by wxLazy("LruCache") {
-        if (wxVersion!! < Version("7.0.9")) {
-            findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.sdk.platformtools")
+        if (wxVersion!! < Version("7.0.10")) {
+            findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.memory", 3)
                 .filterByMethod(null, "trimToSize", C.Int)
+                .filterByMethod(null, "clear")
                 .firstOrNull()
 
         } else {

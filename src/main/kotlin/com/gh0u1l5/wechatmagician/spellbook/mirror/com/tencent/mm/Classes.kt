@@ -18,9 +18,10 @@ object Classes {
     }
 
     val LruCacheWithListener: Class<*> by wxLazy("LruCacheWithListener") {
-        if (wxVersion!! < Version("7.0.9")) {
-            findClassesFromPackage(wxLoader!!, wxClasses!!, wxPackageName, 1)
-                .filterBySuper(LruCache)
+        if (wxVersion!! < Version("7.0.10")) {
+            findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.memory", 1)
+                .filterByMethod(C.Object, "put", C.String, C.Object)
+                .filterByMethod(C.Object, "get", C.String)
                 .firstOrNull()
 
         } else {
@@ -32,9 +33,10 @@ object Classes {
     }
 
     val LruCacheWithListenerType: Class<*> by wxLazy("LruCacheWithListenerType") {
-        if (wxVersion!! < Version("7.0.9")) {
+        if (wxVersion!! < Version("7.0.10")) {
             findClassesFromPackage(wxLoader!!, wxClasses!!, wxPackageName, 1)
-                .filterBySuper(LruCache)
+                .filterByMethod(C.Int, "missCount")
+                .filterByMethod(C.Int, "createCount")
                 .firstOrNull()
 
         } else {

@@ -12,8 +12,8 @@ import com.gh0u1l5.wechatmagician.spellbook.util.ReflectionUtil.findClassesFromP
 
 object Classes {
     val AddressUI: Class<*> by wxLazy("AddressUI") {
-        if (wxVersion!! < Version("7.0.9")) {
-            findClassIfExists("$wxPackageName.ui.contact.AddressUI\$a", wxLoader!!)
+        if (wxVersion!! < Version("7.0.10")) {
+            findClassIfExists("$wxPackageName.ui.contact.AddressUI\$AddressUIFragment", wxLoader!!)
         } else {
             findClassIfExists("$wxPackageName.ui.contact.AddressUI\$AddressUIFragment", wxLoader!!)
         }
@@ -21,15 +21,15 @@ object Classes {
 
     val AddressAdapter: Class<*> by wxLazy("AddressAdapter") {
         findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.ui.contact")
-                .filterByMethod(null, "pause")
-                .firstOrNull()
+            .filterByMethod(null, "pause")
+            .firstOrNull()
     }
 
     val ContactLongClickListener: Class<*> by wxLazy("ContactLongClickListener") {
         findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.ui.contact")
-                .filterByEnclosingClass(AddressUI)
-                .filterByMethod(C.Boolean, "onItemLongClick", C.AdapterView, C.View, C.Int, C.Long)
-                .firstOrNull()
+            .filterByEnclosingClass(AddressUI)
+            .filterByMethod(C.Boolean, "onItemLongClick", C.AdapterView, C.View, C.Int, C.Long)
+            .firstOrNull()
     }
 
     val SelectContactUI: Class<*> by wxLazy("SelectContactUI") {

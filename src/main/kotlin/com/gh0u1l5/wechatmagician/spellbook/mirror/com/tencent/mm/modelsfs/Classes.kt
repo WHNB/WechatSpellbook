@@ -1,6 +1,5 @@
 package com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.modelsfs
 
-import com.gh0u1l5.wechatmagician.spellbook.C
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxClasses
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxLazy
 import com.gh0u1l5.wechatmagician.spellbook.WechatGlobal.wxLoader
@@ -11,9 +10,9 @@ import com.gh0u1l5.wechatmagician.spellbook.util.ReflectionUtil.findClassesFromP
 
 object Classes {
     val EncEngine: Class<*> by wxLazy("EncEngine") {
-        if (wxVersion!! < Version("7.0.9")) {
+        if (wxVersion!! < Version("7.0.10")) {
             findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.modelsfs")
-                .filterByMethod(null, "seek", C.Long)
+                .filterByMethod(null, "init")
                 .filterByMethod(null, "free")
                 .firstOrNull()
 
