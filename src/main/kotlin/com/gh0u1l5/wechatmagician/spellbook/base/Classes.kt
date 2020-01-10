@@ -113,7 +113,7 @@ class Classes(private val classes: List<Class<*>>) {
     }
 
     fun dumpAll() {
-        if (classes.size > 0) {
+        if (classes.isNotEmpty()) {
             val names = classes.map { it.name }
             Log.w(TAG, "[dumpAll] class: $names")
 
@@ -130,6 +130,14 @@ class Classes(private val classes: List<Class<*>>) {
         }.also {
             if (it.isEmpty()) {
                 Log.w(TAG, "filterByFieldNotInclude found nothing, $fieldName $fieldType")
+            }
+        })
+    }
+
+    fun filterByGenericInterfaces(fieldType: String): Classes {
+        return Classes(classes.filter { it ->
+            it.interfaces.any {
+                it.name == fieldType
             }
         })
     }
